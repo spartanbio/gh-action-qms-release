@@ -1,0 +1,13 @@
+name: 'qms-release'
+description: 'Tag QMS releases'
+inputs:
+  document-number:
+    description: 'QMS Document Number'
+    required: true
+  branch:
+    description: 'Target branch to run on'
+    required: false
+    default: release
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
