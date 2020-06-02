@@ -32,3 +32,18 @@ jobs:
         with:
           document-number: NNN-00000
 ```
+
+## git alias
+
+Add the following to your `.gitconfig`:
+
+```sh
+[alias]
+  qms = "!f() { \
+    LAST_QMS_REF=$(git rev-list --tags=\"$1-*\" --max-count=1);\
+    LAST_QMS_TAG=$(git describe --tags $LAST_QMS_REF);\
+    git log $LAST_QMS_TAG..HEAD --no-merges --format='- %s';\
+  }; f"
+```
+
+Then run `git qms <DOCUMENT_NUMBER>` to get a summary of commits since the last release.
